@@ -14,19 +14,20 @@
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        bg: '#0a0a0a',
-                        surface: '#111111',
-                        border: '#1f1f1f',
-                        muted: '#3a3a3a',
-                        subtle: '#6b6b6b',
-                        body: '#a8a8a8',
-                        heading: '#f0f0f0',
-                        accent: '#e8d5b0',
+                        bg: '#080808',
+                        surface: '#101010',
+                        border: '#1a1a1a',
+                        muted: '#333333',
+                        subtle: '#555555',
+                        body: '#999999',
+                        heading: '#efefef',
+                        accent: '#c9a96e',
                     },
                     animation: {
-                        'fade-in': 'fadeIn 0.8s ease forwards',
-                        'fade-up': 'fadeUp 0.8s ease forwards',
+                        'fade-in': 'fadeIn 1s ease forwards',
+                        'fade-up': 'fadeUp 0.9s ease forwards',
                         'cursor-blink': 'blink 1.2s step-end infinite',
+                        'line-grow': 'lineGrow 1.2s ease forwards',
                     },
                     keyframes: {
                         fadeIn: {
@@ -34,12 +35,16 @@
                             '100%': { opacity: '1' },
                         },
                         fadeUp: {
-                            '0%': { opacity: '0', transform: 'translateY(16px)' },
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' },
                         },
                         blink: {
                             '0%, 100%': { opacity: '1' },
                             '50%': { opacity: '0' },
+                        },
+                        lineGrow: {
+                            '0%': { transform: 'scaleX(0)', opacity: '0' },
+                            '100%': { transform: 'scaleX(1)', opacity: '1' },
                         },
                     },
                 }
@@ -48,107 +53,150 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,200;0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        * { -webkit-font-smoothing: antialiased; }
-        body { background-color: #0a0a0a; }
+        * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
-        .fade-delay-1 { animation-delay: 0.1s; opacity: 0; }
-        .fade-delay-2 { animation-delay: 0.25s; opacity: 0; }
-        .fade-delay-3 { animation-delay: 0.4s; opacity: 0; }
-        .fade-delay-4 { animation-delay: 0.55s; opacity: 0; }
-        .fade-delay-5 { animation-delay: 0.7s; opacity: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: #080808;
+            background-image:
+                radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201,169,110,0.06) 0%, transparent 60%);
+        }
+
+        .fade-delay-1 { animation-delay: 0.05s; opacity: 0; }
+        .fade-delay-2 { animation-delay: 0.2s;  opacity: 0; }
+        .fade-delay-3 { animation-delay: 0.35s; opacity: 0; }
+        .fade-delay-4 { animation-delay: 0.5s;  opacity: 0; }
+        .fade-delay-5 { animation-delay: 0.65s; opacity: 0; }
+        .fade-delay-6 { animation-delay: 0.8s;  opacity: 0; }
 
         .noise {
             position: fixed;
             inset: 0;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.025;
+            opacity: 0.03;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
             background-repeat: repeat;
             background-size: 128px 128px;
         }
 
-        .glow-line {
-            background: linear-gradient(90deg, transparent, #e8d5b020, transparent);
+        .gradient-line {
+            background: linear-gradient(90deg, transparent 0%, #c9a96e30 40%, #c9a96e50 50%, #c9a96e30 60%, transparent 100%);
+            transform-origin: left;
         }
 
-        a { transition: color 0.2s ease; }
+        .dim-line {
+            background: linear-gradient(90deg, #1a1a1a, #252525, #1a1a1a);
+        }
 
-        .email-link:hover { color: #e8d5b0; }
+        ::selection { background: #c9a96e25; color: #efefef; }
 
-        ::selection {
-            background: #e8d5b030;
-            color: #f0f0f0;
+        .email-obfuscated {
+            cursor: pointer;
+            position: relative;
+        }
+        .email-obfuscated::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #c9a96e;
+            transition: width 0.3s ease;
+        }
+        .email-obfuscated:hover::after { width: 100%; }
+        .email-obfuscated:hover { color: #c9a96e; }
+
+        .available-pulse {
+            animation: pulse-glow 2.5s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4); }
+            50% { box-shadow: 0 0 0 4px rgba(74, 222, 128, 0); }
+        }
+
+        .hero-name {
+            background: linear-gradient(135deg, #efefef 0%, #c9a96e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
     </style>
 </head>
-<body class="bg-bg text-body font-sans min-h-screen">
+<body class="text-body font-sans min-h-screen">
 
-    <!-- Noise texture overlay -->
     <div class="noise"></div>
 
-    <!-- Main layout -->
-    <div class="relative z-10 max-w-2xl mx-auto px-6 py-20 md:py-32">
+    <div class="relative z-10 max-w-xl mx-auto px-6 py-24 md:py-36">
 
-        <!-- Header -->
-        <header class="mb-20 animate-fade-up fade-delay-1">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h1 class="text-heading text-xl font-semibold tracking-tight">Rohan Mehra</h1>
-                    <a
-                        href="mailto:rohanvmehra@outlook.com"
-                        class="email-link font-mono text-sm text-subtle mt-1 inline-block hover:text-accent transition-colors duration-200"
-                    >rohanvmehra@outlook.com</a>
-                </div>
-                <!-- Status dot -->
-                <div class="flex items-center gap-2 text-xs text-subtle font-mono">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-50"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                    </span>
-                    available
-                </div>
+        <!-- Top bar: status only -->
+        <div class="flex justify-end mb-20 animate-fade-in fade-delay-1">
+            <div class="flex items-center gap-2 text-xs text-subtle font-mono">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-40"></span>
+                    <span class="available-pulse relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                available
             </div>
-
-            <!-- Divider -->
-            <div class="mt-8 h-px glow-line"></div>
-        </header>
+        </div>
 
         <!-- Hero -->
-        <section class="mb-16 animate-fade-up fade-delay-2">
-            <p class="text-heading text-3xl md:text-4xl font-light leading-snug tracking-tight">
-                Hi, I'm Rohan<span class="text-accent animate-cursor-blink">_</span>
-            </p>
+        <section class="mb-20">
+            <h1 class="hero-name animate-fade-up fade-delay-2 text-5xl md:text-6xl font-extralight tracking-tight leading-none mb-6">
+                Rohan<br>Mehra
+            </h1>
+            <div class="animate-fade-up fade-delay-3">
+                <div class="gradient-line h-px mb-0 animate-line-grow"></div>
+            </div>
         </section>
 
-        <!-- Divider -->
-        <div class="mb-16 h-px bg-border animate-fade-in fade-delay-3"></div>
+        <!-- Contact -->
+        <section class="animate-fade-up fade-delay-4 mb-24">
+            <p class="text-xs font-mono text-muted uppercase tracking-[0.2em] mb-5">Get in touch</p>
 
-        <!-- Contact section -->
-        <section class="animate-fade-up fade-delay-4">
-            <p class="text-xs font-mono text-muted uppercase tracking-widest mb-4">Contact</p>
-            <a
-                href="mailto:rohanvmehra@outlook.com"
-                class="email-link group flex items-center gap-3 text-body hover:text-accent transition-colors duration-200"
-            >
-                <svg class="w-4 h-4 text-muted group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            <div class="flex items-center gap-3">
+                <!-- Mail icon -->
+                <svg class="w-4 h-4 text-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                 </svg>
-                <span class="font-mono text-sm">rohanvmehra@outlook.com</span>
-            </a>
+                <!-- Obfuscated email — assembled by JS so scrapers can't read it -->
+                <span
+                    id="email-display"
+                    class="email-obfuscated font-mono text-sm text-body transition-colors duration-200"
+                    title="Click to email"
+                ></span>
+            </div>
         </section>
+
+        <!-- Dim divider -->
+        <div class="dim-line h-px animate-fade-in fade-delay-5 mb-10"></div>
 
         <!-- Footer -->
-        <footer class="mt-32 animate-fade-in fade-delay-5">
-            <div class="h-px bg-border mb-8"></div>
-            <p class="text-xs font-mono text-muted">
-                © 2026 Rohan Mehra
-            </p>
+        <footer class="animate-fade-in fade-delay-6">
+            <p class="text-xs font-mono text-muted">© 2026 Rohan Mehra</p>
         </footer>
 
     </div>
+
+    <script>
+        // Anti-scraping: assemble email at runtime so it never appears in raw HTML
+        (function() {
+            const u = 'rohanvmehra';
+            const d = 'outlook';
+            const t = 'com';
+            const el = document.getElementById('email-display');
+            const full = u + '@' + d + '.' + t;
+            el.textContent = u + '\u0040' + d + '.' + t; // \u0040 = @
+            el.addEventListener('click', function() {
+                window.location.href = 'mailto:' + full;
+            });
+        })();
+    </script>
 
 </body>
 </html>

@@ -40,7 +40,7 @@
             top: 0; left: 0;
             width: 100%; height: 100%;
             z-index: 0;
-            opacity: 0.18;
+            opacity: 0.35;
         }
 
         /* ── Vignette over canvas ── */
@@ -288,8 +288,8 @@
                 if (headBrightness > 0.5) {
                     ctx.fillStyle = '#ffffff';
                 } else {
-                    // Body: shades of grey
-                    const grey = Math.floor(80 + Math.random() * 100);
+                    // Body: lighter shades of grey
+                    const grey = Math.floor(160 + Math.random() * 95);
                     ctx.fillStyle = `rgb(${grey},${grey},${grey})`;
                 }
 

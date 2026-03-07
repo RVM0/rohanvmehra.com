@@ -1,7 +1,7 @@
 // ── Email obfuscation ──────────────────────────────────────
 (function() {
     const p = ['rohanvmehra', 'outlook', 'com'];
-    document.getElementById('email-text').textContent = p[0] + '[at]' + p[1] + '.' + p[2];
+    document.getElementById('email-text').textContent = p[0] + '[at]' + p[1] + '[dot]' + p[2];
     document.getElementById('email-display').addEventListener('click', function() {
         window.location.href = 'mailto:' + p[0] + '@' + p[1] + '.' + p[2];
     });

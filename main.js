@@ -7,6 +7,42 @@
     });
 })();
 
+// ── Cursor glow ────────────────────────────────────────────
+(function() {
+    const glow = document.getElementById('cursor-glow');
+    const dot  = document.getElementById('cursor-dot');
+    let mx = -999, my = -999;
+
+    document.addEventListener('mousemove', function(e) {
+        mx = e.clientX; my = e.clientY;
+        glow.style.left = mx + 'px';
+        glow.style.top  = my + 'px';
+        dot.style.left  = mx + 'px';
+        dot.style.top   = my + 'px';
+    });
+
+    document.addEventListener('mouseleave', function() {
+        glow.style.opacity = '0';
+        dot.style.opacity  = '0';
+    });
+    document.addEventListener('mouseenter', function() {
+        glow.style.opacity = '1';
+        dot.style.opacity  = '1';
+    });
+})();
+
+// ── Sticky monogram ────────────────────────────────────────
+(function() {
+    const monogram = document.getElementById('monogram');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 80) {
+            monogram.style.opacity = '1';
+        } else {
+            monogram.style.opacity = '0';
+        }
+    });
+})();
+
 // ── Matrix rain ────────────────────────────────────────────
 (function() {
     const canvas = document.getElementById('matrix-canvas');

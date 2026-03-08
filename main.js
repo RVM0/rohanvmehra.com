@@ -1,45 +1,9 @@
 // ── Email obfuscation ──────────────────────────────────────
 (function() {
     const p = ['rohanvmehra', 'outlook', 'com'];
-    document.getElementById('email-text').textContent = p[0] + '[at]' + p[1] + '[dot]' + p[2];
+    document.getElementById('email-text').textContent = p[0] + '[at]' + p[1] + '.' + p[2];
     document.getElementById('email-display').addEventListener('click', function() {
         window.location.href = 'mailto:' + p[0] + '@' + p[1] + '.' + p[2];
-    });
-})();
-
-// ── Cursor glow ────────────────────────────────────────────
-(function() {
-    const glow = document.getElementById('cursor-glow');
-    const dot  = document.getElementById('cursor-dot');
-    let mx = -999, my = -999;
-
-    document.addEventListener('mousemove', function(e) {
-        mx = e.clientX; my = e.clientY;
-        glow.style.left = mx + 'px';
-        glow.style.top  = my + 'px';
-        dot.style.left  = mx + 'px';
-        dot.style.top   = my + 'px';
-    });
-
-    document.addEventListener('mouseleave', function() {
-        glow.style.opacity = '0';
-        dot.style.opacity  = '0';
-    });
-    document.addEventListener('mouseenter', function() {
-        glow.style.opacity = '1';
-        dot.style.opacity  = '1';
-    });
-})();
-
-// ── Sticky monogram ────────────────────────────────────────
-(function() {
-    const monogram = document.getElementById('monogram');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 80) {
-            monogram.style.opacity = '1';
-        } else {
-            monogram.style.opacity = '0';
-        }
     });
 })();
 

@@ -66,7 +66,7 @@
         .content {
             position: relative;
             z-index: 2;
-            max-width: 600px;
+            max-width: 680px;
             margin: 0 auto;
             padding: 5rem 2rem 2rem;
         }
@@ -135,17 +135,17 @@
             position: absolute;
             bottom: -2px; left: 0;
             height: 1px; width: 0;
-            background: #888;
+            background: #5b9cf6;
             transition: width 0.35s ease;
         }
-        .email-wrap:hover { color: #fff; }
+        .email-wrap:hover { color: #5b9cf6; }
         .email-wrap:hover::after { width: 100%; }
         .email-icon {
             width: 14px; height: 14px;
             stroke: #888; flex-shrink: 0;
             transition: stroke 0.25s;
         }
-        .email-wrap:hover .email-icon { stroke: #ccc; }
+        .email-wrap:hover .email-icon { stroke: #5b9cf6; }
 
         /* ── Publication card ── */
         .pub-card {
@@ -153,25 +153,25 @@
             border-radius: 4px;
             padding: 1.25rem 1.5rem;
             background: rgba(255,255,255,0.015);
-            transition: border-color 0.25s, background 0.25s;
+            transition: border-color 0.25s, background 0.25s, transform 0.2s;
             animation: fade-up 0.8s ease 1s both;
             position: relative;
         }
         .pub-card:hover {
             border-color: #2e2e2e;
             background: rgba(255,255,255,0.03);
+            transform: translateY(-2px);
         }
-        .pub-year {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
+        .pub-year-tag {
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
-            color: #777;
-            letter-spacing: 0.15em;
-            border: 1px solid #2a2a2a;
+            font-size: 0.65rem;
+            color: #bbb;
+            letter-spacing: 0.12em;
+            border: 1px solid #333;
             border-radius: 3px;
-            padding: 0.2rem 0.45rem;
+            padding: 0.15rem 0.4rem;
+            vertical-align: middle;
+            flex-shrink: 0;
         }
         .pub-title {
             font-family: 'Inter', sans-serif;
@@ -180,6 +180,10 @@
             color: #ddd;
             line-height: 1.6;
             margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
         }
         .pub-meta {
             font-family: 'Share Tech Mono', monospace;
@@ -205,10 +209,10 @@
             position: absolute;
             bottom: -1px; left: 0;
             height: 1px; width: 0;
-            background: #666;
+            background: #5b9cf6;
             transition: width 0.3s ease;
         }
-        .pub-link:hover { color: #aaa; }
+        .pub-link:hover { color: #5b9cf6; }
         .pub-link:hover::after { width: 100%; }
 
         /* ── GitHub link ── */
@@ -229,10 +233,10 @@
             position: absolute;
             bottom: -1px; left: 0;
             height: 1px; width: 0;
-            background: #888;
+            background: #5b9cf6;
             transition: width 0.3s ease;
         }
-        .gh-link:hover { color: #ddd; }
+        .gh-link:hover { color: #5b9cf6; }
         .gh-link:hover::after { width: 100%; }
 
         /* ── Footer ── */
@@ -361,7 +365,7 @@
         <div class="anim-5">
             <p class="section-label">Projects</p>
             <div class="pub-card" style="margin-bottom:1rem;">
-                <p class="pub-title">EpiBuddy</p>
+                <p class="pub-title">EpiBuddy <span class="pub-year-tag">2024</span></p>
                 <p class="pub-meta">Developed and 3D printed a prototype device to carry life-saving epinephrine auto-injectors on phones, keeping emergency medication always within reach.</p>
                 <a
                     href="https://epibuddy.com"
@@ -377,12 +381,12 @@
                 </a>
             </div>
             <div class="pub-card" style="margin-bottom:1rem;">
-                <p class="pub-title">TEDx Talk — "Mission-Driven Swimmers"</p>
+                <p class="pub-title">TEDx Talk — "Mission-Driven Swimmers" <span class="pub-year-tag">2025</span></p>
                 <p class="pub-meta">Co-founded a learn-to-swim program in the Bronx that has taught over 100 children essential swimming skills. Founded the #MissionDrivenSwimmers campaign to encourage high school swimmers to expand access to swim education in their communities.<br><br>May 17, 2025 &nbsp;·&nbsp; Riverdale Country School, Bronx, NY</p>
                 <span class="pub-meta" style="display:inline-block;margin-top:0.75rem;color:#555;font-style:italic;">link coming soon</span>
             </div>
             <div class="pub-card">
-                <p class="pub-title">sustAIn</p>
+                <p class="pub-title">sustAIn <span class="pub-year-tag">2024</span></p>
                 <p class="pub-meta">COO of sustAIn, a student-founded 501(c)(3) non-profit educating students on AI risks and ethics. Hosted 2 webinars with 50+ attendees each and co-authored 2 papers on AI risks and ethics. (2024–Present)</p>
                 <a
                     href="https://www.sustain-ai.org/"

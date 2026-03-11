@@ -148,27 +148,21 @@
         .email-wrap:hover .email-icon { stroke: #5b9cf6; }
 
         /* ── Publication card ── */
-        @property --ba {
-            syntax: '<angle>';
-            initial-value: 0deg;
-            inherits: false;
-        }
         .pub-card {
-            border: 1px solid transparent;
+            border: 1px solid #1c1c1c;
             border-radius: 4px;
             padding: 1.25rem 1.5rem;
-            background: #0c0c0c padding-box, #1c1c1c border-box;
-            transition: transform 0.2s;
+            background: rgba(255,255,255,0.015);
+            transition: border-color 0.3s, background 0.25s, transform 0.2s, box-shadow 0.3s;
             animation: fade-up 0.8s ease 1s both;
             position: relative;
         }
         .pub-card:hover {
-            background: #0e0e0e padding-box,
-                conic-gradient(from var(--ba), #1c1c1c 0%, #1c1c1c 35%, #5b9cf6 47%, #93c5fd 50%, #5b9cf6 53%, #1c1c1c 65%, #1c1c1c) border-box;
-            animation: ba-spin 3s linear infinite;
+            border-color: rgba(91, 156, 246, 0.3);
+            background: rgba(255,255,255,0.03);
             transform: translateY(-2px);
+            box-shadow: 0 0 0 1px rgba(91, 156, 246, 0.1), 0 0 20px rgba(91, 156, 246, 0.08);
         }
-        @keyframes ba-spin { to { --ba: 360deg; } }
         .pub-card:hover .pub-link::after { width: 100%; }
         .pub-year-tag {
             font-family: 'Share Tech Mono', monospace;

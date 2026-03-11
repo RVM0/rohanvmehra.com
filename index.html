@@ -162,6 +162,17 @@
             background: rgba(255,255,255,0.03);
             transform: translateY(-2px);
         }
+        .pub-card::before {
+            content: '';
+            position: absolute;
+            left: -1px; top: 0; bottom: 0;
+            width: 2px;
+            background: #5b9cf6;
+            border-radius: 4px 0 0 4px;
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+        .pub-card:hover::before { opacity: 1; }
         .pub-year-tag {
             font-family: 'Share Tech Mono', monospace;
             font-size: 0.8rem;
@@ -265,6 +276,9 @@
 </head>
 <body>
 
+    <!-- Top accent line -->
+    <div style="position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#5b9cf6 30%,#5b9cf6 70%,transparent);z-index:10;"></div>
+
     <canvas id="matrix-canvas"></canvas>
     <div class="vignette"></div>
 
@@ -275,6 +289,7 @@
             <span>ROHAN</span><br>
             <span style="animation-delay:0.3s">MEHRA</span>
         </h1>
+        <p class="animate-name" style="font-family:'Share Tech Mono',monospace;font-size:0.75rem;color:#555;letter-spacing:0.2em;margin:0.6em 0 0 0;">researcher · swimmer · builder</p>
 
         <div class="divider"></div>
 

@@ -164,6 +164,27 @@
             box-shadow: 0 0 0 1px rgba(91, 156, 246, 0.1), 0 0 20px rgba(91, 156, 246, 0.08);
         }
         .pub-card:hover .pub-link::after { width: 100%; }
+
+        /* ── Card border beam ── */
+        .beam-el {
+            position: absolute;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, rgba(91,156,246,0.5) 20%, rgba(147,197,253,1) 50%, rgba(91,156,246,0.5) 80%, transparent);
+            filter: blur(3px);
+            offset-distance: 0%;
+            offset-rotate: auto;
+            opacity: 0;
+            pointer-events: none;
+            animation: beam-travel 2.5s linear infinite;
+            animation-play-state: paused;
+            transition: opacity 0.4s;
+        }
+        .pub-card:hover .beam-el {
+            opacity: 1;
+            animation-play-state: running;
+        }
+        @keyframes beam-travel { to { offset-distance: 100%; } }
         .pub-year-tag {
             font-family: 'Share Tech Mono', monospace;
             font-size: 0.8rem;

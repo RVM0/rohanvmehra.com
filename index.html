@@ -148,31 +148,28 @@
         .email-wrap:hover .email-icon { stroke: #5b9cf6; }
 
         /* ── Publication card ── */
+        @property --ba {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
         .pub-card {
-            border: 1px solid #1c1c1c;
+            border: 1px solid transparent;
             border-radius: 4px;
             padding: 1.25rem 1.5rem;
-            background: rgba(255,255,255,0.015);
-            transition: border-color 0.25s, background 0.25s, transform 0.2s;
+            background: #0c0c0c padding-box, #1c1c1c border-box;
+            transition: transform 0.2s;
             animation: fade-up 0.8s ease 1s both;
             position: relative;
         }
         .pub-card:hover {
-            border-color: #2e2e2e;
-            background: rgba(255,255,255,0.03);
+            background: #0e0e0e padding-box,
+                conic-gradient(from var(--ba), #1c1c1c 0%, #1c1c1c 35%, #5b9cf6 47%, #93c5fd 50%, #5b9cf6 53%, #1c1c1c 65%, #1c1c1c) border-box;
+            animation: ba-spin 3s linear infinite;
             transform: translateY(-2px);
         }
-        .pub-card::before {
-            content: '';
-            position: absolute;
-            left: -1px; top: 0; bottom: 0;
-            width: 2px;
-            background: #5b9cf6;
-            border-radius: 4px 0 0 4px;
-            opacity: 0;
-            transition: opacity 0.25s;
-        }
-        .pub-card:hover::before { opacity: 1; }
+        @keyframes ba-spin { to { --ba: 360deg; } }
+        .pub-card:hover .pub-link::after { width: 100%; }
         .pub-year-tag {
             font-family: 'Share Tech Mono', monospace;
             font-size: 0.8rem;
@@ -276,9 +273,6 @@
 </head>
 <body>
 
-    <!-- Top accent line -->
-    <div style="position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#5b9cf6 30%,#5b9cf6 70%,transparent);z-index:10;"></div>
-
     <canvas id="matrix-canvas"></canvas>
     <div class="vignette"></div>
 
@@ -289,8 +283,6 @@
             <span>ROHAN</span><br>
             <span style="animation-delay:0.3s">MEHRA</span>
         </h1>
-        <p class="animate-name" style="font-family:'Share Tech Mono',monospace;font-size:0.75rem;color:#555;letter-spacing:0.2em;margin:0.6em 0 0 0;">researcher · swimmer · builder</p>
-
         <div class="divider"></div>
 
         <!-- About -->

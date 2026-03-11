@@ -7,27 +7,6 @@
     });
 })();
 
-// ── Card border beam ────────────────────────────────────────
-(function() {
-    function initBeam(card) {
-        const beam = document.createElement('span');
-        beam.className = 'beam-el';
-        card.appendChild(beam);
-
-        function update() {
-            const w = card.offsetWidth;
-            const h = card.offsetHeight;
-            const r = 4;
-            beam.style.offsetPath = `path('M ${r} 0 L ${w-r} 0 Q ${w} 0 ${w} ${r} L ${w} ${h-r} Q ${w} ${h} ${w-r} ${h} L ${r} ${h} Q 0 ${h} 0 ${h-r} L 0 ${r} Q 0 0 ${r} 0 Z')`;
-        }
-
-        update();
-        new ResizeObserver(update).observe(card);
-    }
-
-    document.querySelectorAll('.pub-card').forEach(initBeam);
-})();
-
 // ── Matrix rain ────────────────────────────────────────────
 (function() {
     const canvas = document.getElementById('matrix-canvas');
